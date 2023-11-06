@@ -1,10 +1,13 @@
 use std::sync::Arc;
 
-use banhammer_grpc::{grpc::{
-    validation_control_server::ValidationControl, AddBanRequest, AddBanResponse, BanItem,
-    ListBansRequest, ListBansResponse, RemoveBanRequest, RemoveBanResponse, StateRequest,
-    StateResponse,
-}, BanTypesEnum};
+use banhammer_grpc::{
+    grpc::{
+        validation_control_server::ValidationControl, AddBanRequest, AddBanResponse, BanItem,
+        ListBansRequest, ListBansResponse, RemoveBanRequest, RemoveBanResponse, StateRequest,
+        StateResponse,
+    },
+    BanTypesEnum,
+};
 use tokio::sync::Mutex;
 use tonic::{Request, Response, Status};
 
@@ -32,7 +35,6 @@ impl ValidationControl for Admin {
         &self,
         request: Request<AddBanRequest>,
     ) -> Result<Response<AddBanResponse>, Status> {
-
         let ban = Ban::from(request.into_inner());
 
         let mut banhammer = self.banhammer.lock().await;
@@ -40,13 +42,13 @@ impl ValidationControl for Admin {
         match ban.ban_type {
             BanTypesEnum::CONTENT => {
                 banhammer.words.append(&mut [ban].to_vec());
-            },
+            }
             BanTypesEnum::USER => {
                 banhammer.users.append(&mut [ban].to_vec());
-            },
+            }
             BanTypesEnum::IP => {
                 banhammer.ips.append(&mut [ban].to_vec());
-            },
+            }
             BanTypesEnum::TAG => {
                 banhammer.tags.append(&mut [ban].to_vec());
             }

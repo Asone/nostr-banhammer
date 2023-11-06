@@ -1,7 +1,8 @@
 use std::{fmt, path::Path};
 
 use banhammer_grpc::grpc::{
-    authorization_server::Authorization, event::TagEntry, Decision, Event, EventReply, EventRequest, AddBanRequest,
+    authorization_server::Authorization, event::TagEntry, AddBanRequest, Decision, Event,
+    EventReply, EventRequest,
 };
 use bech32::{ToBase32, Variant};
 use chrono::{NaiveDateTime, Utc};
@@ -27,7 +28,7 @@ impl From<AddBanRequest> for Ban {
             content: value.content,
             regex: value.regex,
             reason: value.reason,
-            ban_type: FromPrimitive::from_i32(value.ban_type).unwrap()
+            ban_type: FromPrimitive::from_i32(value.ban_type).unwrap(),
         }
     }
 }
@@ -128,7 +129,7 @@ impl BanHammer {
     ) -> () {
         let id = hex::encode(event.id).as_str().to_string();
 
-        let created_at = event.created_at*1000;
+        let created_at = event.created_at * 1000;
         let datetime = match NaiveDateTime::from_timestamp_millis(created_at as i64) {
             Some(v) => v,
             None => Utc::now().naive_utc(),
