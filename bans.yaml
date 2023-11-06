@@ -1,4 +1,4 @@
-- content: 
+- content: hello
   regex: false
   ban_type: CONTENT
 - content: world
