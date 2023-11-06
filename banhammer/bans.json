@@ -1,0 +1,14 @@
+[
+    {
+        "content": "hello",
+        "regex": false,
+        "date": "",
+        "ban_type": 1
+    },
+    {
+        "content": "world",
+        "regex": false,
+        "date": "",
+        "ban_type": 0
+    }
+]

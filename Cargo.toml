@@ -1,0 +1,2 @@
+[workspace]
+members = ["banhammer","banhammer_cli","banhammer_grpc"]

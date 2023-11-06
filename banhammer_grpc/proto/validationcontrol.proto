@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+// Nostr Authorization Services
+package validationcontrol;
+
+enum BanType {
+    IP = 0;
+    USER = 1;
+    TAG = 2;
+    CONTENT = 3;
+}
+
+service ValidationControl {
+
+    rpc State (StateRequest) returns (StateResponse) {};
+    rpc AddBan (AddBanRequest) returns (AddBanResponse) {};
+    rpc ListBans (ListBansRequest) returns (ListBansResponse) {};
+    rpc RemoveBan (RemoveBanRequest) returns (RemoveBanResponse) {};
+}
+
+message StateRequest {}
+message StateResponse {
+        bool state = 1;
+}
+
+message BanItem {
+    string content = 1;
+    bool regex = 2;
+    optional string reason = 3;
+    BanType ban_type = 4;
+}
+
+message AddBanRequest {
+    string content = 1;
+    bool regex = 2;
+    optional string reason = 3;
+    optional int32 expires_in = 4;
+    BanType ban_type = 5;
+}
+
+message AddBanResponse {
+
+}
+
+message ListBansRequest {
+    BanType ban_type = 1;
+}
+
+message ListBansResponse {
+    repeated BanItem bans = 1;
+}
+
+message RemoveBanRequest {
+    BanType ban_type = 1;
+    uint32 index = 2;
+}
+
+
+message RemoveBanResponse {
+    bool result = 1;
+}

@@ -1,0 +1,31 @@
+[package]
+name = "banhammer"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# Common dependencies
+tokio = { version = "1.0", features = ["rt-multi-thread", "macros"] }
+prost = "0.12.1"
+tonic = "0.10.2"
+serde = { version = "1.0.189", features = ["derive"] }
+serde_json = "1.0.105"
+chrono = { version = "0.4.31", features = ["serde"] }
+clap = { version = "4.3.5", features = ["derive"] }
+regex = "1.9.3"
+async-trait = "0.1.68"
+bech32 = "0.9.1"
+serde_yaml = "0.9.21"
+hex = "0.4.3"
+dotenv = "0.15.0"
+num-traits = "0.2.17" 
+num-derive = "0.4.1"
+num = "0.4.1"
+[dependencies.banhammer_grpc]
+path = "../banhammer_grpc"
+
+[build-dependencies]
+tonic-build = { version="0.10.2", features = ["prost"] }
+
