@@ -6,9 +6,7 @@
   ban_type: TAG
 - content: npub1gn5ha3qaxqgtvxhfdwsyt38s2sdu8jxmad92c0zuhfrthmnq9s5sxhfe6u
   regex: false
-  date: "2023-01-01T00:01:23"
   ban_type: USER
 - content: 192.168.255.255
   regex: false
-  date: "2023-01-01T00:01:23"
   ban_type: IP
